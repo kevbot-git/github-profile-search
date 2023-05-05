@@ -9,6 +9,10 @@ export default function Home() {
 
   async function onSearch(query: string) {
     const response = await fetch(`${GITHUB_API_URL}/users/${query}`);
+    if (response.status === 404) {
+      alert(`User '${query}' not found`);
+      return;
+    }
     const json = await response.json();
     alert(JSON.stringify(json));
   }
