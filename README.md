@@ -17,5 +17,14 @@ This is a Next.js app I've spun up to do the sample project as per the [project 
 -   [x] User should get an alert if the username is not valid
 
 ## Bonus features
+
 -  [ ] User can toggle dark/light mode
 -  [ ] Selected mode should persist when user comes back to the app again
+
+## What I would improve next
+
+- [ ] Show user results on a separate page so that the url stored the username query
+- [ ] Find out how to toggle dark/light while first respecting the browser's prefers-color-theme
+- [ ] Use an i18n pattern to keep concern of copy separate
+- [ ] Indicate loading state
+- [ ] Find a way to remove flicker when using persisted theme

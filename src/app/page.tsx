@@ -5,12 +5,14 @@ import SearchForm from './components/SearchForm';
 import { CollatedUserInfo, GitHubReposResult, GitHubUserResult, RepoInfo } from '@/types';
 import { useState } from 'react';
 import UserCard from './components/UserCard';
+import ThemeToggle from './components/ThemeToggle';
 
 const GITHUB_API_URL = 'https://api.github.com';
 
 export default function Home() {
-
   const [foundUserInfo, setFoundUserInfo] = useState<CollatedUserInfo>();
+
+  const [searchError, setSearchError] = useState<Error>();
 
   /**
    * 
@@ -70,28 +72,32 @@ export default function Home() {
   }
 
   async function onSearch(query: string) {
-    const userResult = await getUser(query);
+    try {
+      const userResult = await getUser(query);
+      const reposResult = await getRepos(userResult);
+      const userInfo = collateUserInfo(userResult, reposResult);
 
-    const reposResult = await getRepos(userResult);
-
-    console.log('user', userResult);
-    console.log('repos', reposResult);
-
-    const userInfo = collateUserInfo(userResult, reposResult);
-    console.log('userInfo', userInfo);
-
-    setFoundUserInfo(userInfo);
+      setFoundUserInfo(userInfo);
+      setSearchError(undefined);
+    } catch (error) {
+      setSearchError(error as Error);
+      setFoundUserInfo(undefined);
+    }
   }
 
   return (
     <main className={styles.main}>
       <div>
-        <SearchForm onSubmit={onSearch}></SearchForm>
+        <ThemeToggle />
       </div>
+      <div>
+        <SearchForm onSubmit={onSearch} />
+      </div>
+        {searchError && (
+          <div className={styles.errorMessage}>{searchError.message}</div>
+        )}
       {foundUserInfo && (
-        <div>
-          <UserCard userInfo={foundUserInfo} />
-        </div>
+        <UserCard userInfo={foundUserInfo} />
       )}
     </main>
   )

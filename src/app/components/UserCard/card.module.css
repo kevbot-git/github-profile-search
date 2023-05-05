@@ -1,0 +1,55 @@
+.container {
+  padding: 20px;
+  background: var(--card-gradient);
+  border-radius: 30px;
+  box-shadow: inset 0 0 10px 0 var(--card-shadow-colour);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  gap: 20px;
+}
+
+.username {
+  margin-bottom: .3em;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.avatar {
+  border-radius: 10px;
+}
+
+.repos {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.repo {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: var(--repo-background-colour);
+}
+
+.repoInfo {
+  opacity: .5;
+}
+
+.divider {
+  margin: 20px 0;
+}
+
+.more {
+  margin: 20px 0;
+}
+
+.iconStat {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
