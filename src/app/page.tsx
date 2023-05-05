@@ -3,10 +3,14 @@
 import styles from './page.module.css'
 import SearchForm from './components/SearchForm';
 
+const GITHUB_API_URL = 'https://api.github.com';
+
 export default function Home() {
 
   async function onSearch(query: string) {
-    alert(`searching for '${query}'...`);
+    const response = await fetch(`${GITHUB_API_URL}/users/${query}`);
+    const json = await response.json();
+    alert(JSON.stringify(json));
   }
 
   return (
