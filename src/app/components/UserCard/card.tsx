@@ -2,6 +2,7 @@
 
 import { CollatedUserInfo } from "@/types";
 import Image from "next/image";
+import styles from './card.module.css';
 
 export declare interface UserCardProps {
   userInfo: CollatedUserInfo;
@@ -12,11 +13,13 @@ export default function UserCard({
 }: UserCardProps) {
   return (
     <>
-      <div>
-        <div><a href={profileUrl}>{username}</a></div>
-        <div><Image src={avatarUrl} alt={username} width={100} height={100} /></div>
-        <div>Followers: {followerCount}</div>
-        <div>Repos: {repositoryCount}</div>
+      <div className={styles.container}>
+        <div><Image className={styles.avatar} src={avatarUrl} alt={username} width={100} height={100} /></div>
+        <div className={styles.info}>
+          <h2 className={styles.username}><a href={profileUrl}>{username}</a></h2>
+          <div>Followers: {followerCount}</div>
+          <div>Repos: {repositoryCount}</div>
+        </div>
       </div>
       <div>
         {topRepos.map((repo) => (

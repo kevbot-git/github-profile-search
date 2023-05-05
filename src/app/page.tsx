@@ -89,9 +89,7 @@ export default function Home() {
         <SearchForm onSubmit={onSearch}></SearchForm>
       </div>
       {foundUserInfo && (
-        <div>
-          <UserCard userInfo={foundUserInfo} />
-        </div>
+        <UserCard userInfo={foundUserInfo} />
       )}
     </main>
   )

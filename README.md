@@ -17,5 +17,10 @@ This is a Next.js app I've spun up to do the sample project as per the [project 
 -   [x] User should get an alert if the username is not valid
 
 ## Bonus features
+
 -  [ ] User can toggle dark/light mode
 -  [ ] Selected mode should persist when user comes back to the app again
+
+## What I would improve next
+
+- [ ] Show user results on a separate page so that the url stored the username query
