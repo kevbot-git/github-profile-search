@@ -26,3 +26,5 @@ This is a Next.js app I've spun up to do the sample project as per the [project 
 - [ ] Show user results on a separate page so that the url stored the username query
 - [ ] Find out how to toggle dark/light while first respecting the browser's prefers-color-theme
 - [ ] Use an i18n pattern to keep concern of copy separate
+- [ ] Indicate loading state
+- [ ] Find a way to remove flicker when using persisted theme

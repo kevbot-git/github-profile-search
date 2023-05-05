@@ -5,21 +5,11 @@ import SearchForm from './components/SearchForm';
 import { CollatedUserInfo, GitHubReposResult, GitHubUserResult, RepoInfo } from '@/types';
 import { useState } from 'react';
 import UserCard from './components/UserCard';
-import IconButton from '@mui/material/IconButton';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import ThemeToggle from './components/ThemeToggle';
 
 const GITHUB_API_URL = 'https://api.github.com';
 
 export default function Home() {
-
-  function setTheme(theme: 'dark' | 'light') {
-    setIsDarkTheme(theme === 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-  }
-
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
   const [foundUserInfo, setFoundUserInfo] = useState<CollatedUserInfo>();
 
   const [searchError, setSearchError] = useState<Error>();
@@ -91,25 +81,17 @@ export default function Home() {
       setSearchError(undefined);
     } catch (error) {
       setSearchError(error as Error);
+      setFoundUserInfo(undefined);
     }
   }
 
   return (
     <main className={styles.main}>
       <div>
-        <IconButton
-          aria-label={`Switch to ${isDarkTheme ? 'light' : 'dark'} mode`}
-          onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}
-        >
-          {isDarkTheme ? (
-            <LightModeIcon htmlColor='rgba(255, 255, 255, .6)' />
-          ) : (
-            <DarkModeIcon />
-          )}
-        </IconButton>
+        <ThemeToggle />
       </div>
       <div>
-        <SearchForm onSubmit={onSearch}></SearchForm>
+        <SearchForm onSubmit={onSearch} />
       </div>
         {searchError && (
           <div className={styles.errorMessage}>{searchError.message}</div>
