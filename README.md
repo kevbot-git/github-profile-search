@@ -11,10 +11,10 @@ This is a Next.js app I've spun up to do the sample project as per the [project 
 ## User Stories
 
 -   [x] User can enter a username
--   [ ] User can click on search button to retrieve information
--   [ ] User can see the avatar, username, followers and repository count of searched user
--   [ ] User can see the top 4 repositories of searched user
--   [ ] User should get an alert if the username is not valid
+-   [x] User can click on search button to retrieve information
+-   [x] User can see the avatar, username, followers and repository count of searched user
+-   [x] User can see the top 4 repositories of searched user
+-   [x] User should get an alert if the username is not valid
 
 ## Bonus features
 -  [ ] User can toggle dark/light mode
