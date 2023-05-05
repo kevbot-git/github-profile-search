@@ -3,8 +3,11 @@
 import styles from './page.module.css'
 import SearchForm from './components/SearchForm';
 import { CollatedUserInfo, GitHubReposResult, GitHubUserResult, RepoInfo } from '@/types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import UserCard from './components/UserCard';
+import IconButton from '@mui/material/IconButton';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 const GITHUB_API_URL = 'https://api.github.com';
 
@@ -18,6 +21,8 @@ export default function Home() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const [foundUserInfo, setFoundUserInfo] = useState<CollatedUserInfo>();
+
+  const [searchError, setSearchError] = useState<Error>();
 
   /**
    * 
@@ -77,27 +82,37 @@ export default function Home() {
   }
 
   async function onSearch(query: string) {
-    const userResult = await getUser(query);
+    try {
+      const userResult = await getUser(query);
+      const reposResult = await getRepos(userResult);
+      const userInfo = collateUserInfo(userResult, reposResult);
 
-    const reposResult = await getRepos(userResult);
-
-    console.log('user', userResult);
-    console.log('repos', reposResult);
-
-    const userInfo = collateUserInfo(userResult, reposResult);
-    console.log('userInfo', userInfo);
-
-    setFoundUserInfo(userInfo);
+      setFoundUserInfo(userInfo);
+    } catch (error) {
+      setSearchError(error as Error);
+    }
   }
 
   return (
     <main className={styles.main}>
       <div>
-        <button onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}>{isDarkTheme ? 'Light' : 'Dark'} mode</button>
+        <IconButton
+          aria-label={`Switch to ${isDarkTheme ? 'light' : 'dark'} mode`}
+          onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}
+        >
+          {isDarkTheme ? (
+            <LightModeIcon htmlColor='rgba(255, 255, 255, .6)' />
+          ) : (
+            <DarkModeIcon />
+          )}
+        </IconButton>
       </div>
       <div>
         <SearchForm onSubmit={onSearch}></SearchForm>
       </div>
+        {searchError && (
+          <div className={styles.errorMessage}>{searchError.message}</div>
+        )}
       {foundUserInfo && (
         <UserCard userInfo={foundUserInfo} />
       )}
