@@ -88,6 +88,7 @@ export default function Home() {
       const userInfo = collateUserInfo(userResult, reposResult);
 
       setFoundUserInfo(userInfo);
+      setSearchError(undefined);
     } catch (error) {
       setSearchError(error as Error);
     }

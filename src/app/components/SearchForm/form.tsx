@@ -13,7 +13,12 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
   return (
     <>
       <form className={styles.form} onSubmit={(e) => {e.preventDefault(); onSubmit?.(query)}}>
-        <input type="text" value={query} onChange={({ target: { value }}) => setQuery(value)} />
+        <input
+          type="text"
+          placeholder="Search username..."
+          value={query}
+          onChange={({ target: { value }}) => setQuery(value)} 
+        />
         <button type="submit">Search</button>
       </form>
     </>
