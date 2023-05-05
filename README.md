@@ -18,8 +18,8 @@ This is a Next.js app I've spun up to do the sample project as per the [project 
 
 ## Bonus features
 
--  [ ] User can toggle dark/light mode
--  [ ] Selected mode should persist when user comes back to the app again
+-  [x] User can toggle dark/light mode
+-  [x] Selected mode should persist when user comes back to the app again
 
 ## What I would improve next
 
