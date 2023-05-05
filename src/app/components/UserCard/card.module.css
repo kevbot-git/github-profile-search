@@ -1,9 +1,8 @@
 .container {
   padding: 20px;
-  background: #0F2027;
-  background: linear-gradient(108deg, #2C5364, #203A43, #0F2027);
+  background: var(--card-gradient);
   border-radius: 30px;
-  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, .75);
+  box-shadow: inset 0 0 10px 0 var(--card-shadow-colour);
   display: flex;
   align-items: center;
   width: 100%;
@@ -21,4 +20,27 @@
 
 .avatar {
   border-radius: 10px;
+}
+
+.repos {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.repo {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: var(--repo-background-colour);
+  /* box-shadow: 0 0 10px 0 var(--repo-background-colour); */
+}
+
+.divider {
+  margin: 20px 0;
+}
+
+.more {
+  margin: 20px 0;
 }

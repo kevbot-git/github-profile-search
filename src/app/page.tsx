@@ -3,12 +3,19 @@
 import styles from './page.module.css'
 import SearchForm from './components/SearchForm';
 import { CollatedUserInfo, GitHubReposResult, GitHubUserResult, RepoInfo } from '@/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserCard from './components/UserCard';
 
 const GITHUB_API_URL = 'https://api.github.com';
 
 export default function Home() {
+
+  function setTheme(theme: 'dark' | 'light') {
+    setIsDarkTheme(theme === 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const [foundUserInfo, setFoundUserInfo] = useState<CollatedUserInfo>();
 
@@ -85,6 +92,9 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      <div>
+        <button onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}>{isDarkTheme ? 'Light' : 'Dark'} mode</button>
+      </div>
       <div>
         <SearchForm onSubmit={onSearch}></SearchForm>
       </div>

@@ -18,18 +18,19 @@ export default function UserCard({
         <div className={styles.info}>
           <h2 className={styles.username}><a href={profileUrl}>{username}</a></h2>
           <div>Followers: {followerCount}</div>
-          <div>Repos: {repositoryCount}</div>
         </div>
       </div>
-      <div>
+      <div className={styles.divider}>Repos ({repositoryCount})</div>
+      <div className={styles.repos}>
         {topRepos.map((repo) => (
-          <div key={repo.url}>
+          <div className={styles.repo} key={repo.url}>
             <a href={repo.url}>{repo.name}</a>
             <div>Stars: {repo.stars}</div>
             <div>Last updated: {Intl.DateTimeFormat('en-NZ').format(repo.updatedAt)}</div>
           </div>
         ))}
       </div>
+      <div className={styles.more}>&hellip;</div>
     </>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import styles from './form.module.css';
 import { useState } from "react";
 
 export declare interface SearchFormProps {
@@ -11,7 +12,7 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
 
   return (
     <>
-      <form onSubmit={(e) => {e.preventDefault(); onSubmit?.(query)}}>
+      <form className={styles.form} onSubmit={(e) => {e.preventDefault(); onSubmit?.(query)}}>
         <input type="text" value={query} onChange={({ target: { value }}) => setQuery(value)} />
         <button type="submit">Search</button>
       </form>

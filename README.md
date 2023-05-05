@@ -24,3 +24,4 @@ This is a Next.js app I've spun up to do the sample project as per the [project 
 ## What I would improve next
 
 - [ ] Show user results on a separate page so that the url stored the username query
+- [ ] Find out how to toggle dark/light while first respecting the browser's prefers-color-theme
